@@ -1,0 +1,64 @@
+{%extends 'base.html'%}
+{%block content%}
+<section>
+    <h2>
+        <p>Add new transaction</p>
+    </h2>
+    <form action="/transactions" method="POST">
+        <table>
+            <tr>
+                <td>
+                    <label for="amount">Amount:</label>
+                </td>
+                <td>
+                    <input type="number" id="amount" step="any" name="amount" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="date">Date:</label>
+                </td>
+                <td>
+                    <input type="date" id="date" name="date" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="description">Description:</label>
+                </td>
+                <td>
+                    <input type="text" id="description" name="description" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="account">Account</label>
+                </td>
+                <td>
+                    <select name="account_id" id="account">
+                        {% for account in all_accounts %}
+                        <option value="{{account.id}}">{{account.name}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="">Merchant</label>
+                </td>
+                <td>
+                    <select name="merchant_id" id="merchant">
+                        {% for merchant in all_merchants %}
+                        <option value="{{merchant.id}}">{{merchant.name}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <button type="submit">Add transaction</button>
+    </form>
+</section>
+
+
+
+{%endblock%}

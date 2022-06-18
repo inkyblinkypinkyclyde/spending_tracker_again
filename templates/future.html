@@ -1,0 +1,50 @@
+{%extends 'base.html'%}
+{%block content%}
+
+<section>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th size="10">Balance on {{date}}</th>
+        </tr>
+        {% for account in all_accounts_for_future %}
+        <tr>
+            <td>{{account.name}}</td>
+            <td>£{{account.balance}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+</section>
+<section>
+    <form action="/future">
+        <label>
+            <input type="date" name="date" required>
+        </label>
+        <button type="submit">Go</button>
+    </form>
+</section>
+<section>
+    transactions
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Account</th>
+            <th>Supplier</th>
+            <th colspan="2">Actions</th>
+            <th>Description</th>
+        </tr>
+        {% for transaction in all_transactions_for_future %}
+        <tr>
+            <td>{{transaction.date}}</td>
+            <td>£{{transaction.amount}}</td>
+            <td><a href="">{{transaction.account.name}}</a></td>
+            <td><a href="">{{transaction.merchant.name}}</a></td>
+            <td><a href="/transactions/{{transaction.id}}/edit">Edit</a></td>
+            <td><a href="/transactions/{{transaction.id}}/delete">Delete</a></td>
+            <td>{{transaction.description}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+</section>
+{%endblock%}

@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+{%block content%}
+<section>
+    <h2>
+        <p>Areyou sure you want to delete {{transaction.name}}? this is permanent.</p>
+    </h2>
+    <form action="/transactions/{{transaction.id}}/delete-transaction" method="POST">
+
+        <button type="submit">Delete transaction</button>
+    </form>
+</section>
+
+
+
+{%endblock%}

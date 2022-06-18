@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+{%block content%}
+<section>
+    <h2>
+        <p>Areyou sure you want to delete {{account.name}}? this is permanent.</p>
+    </h2>
+    <form action="/accounts/{{account.id}}/delete-account" method="POST">
+
+        <button type="submit">Delete account</button>
+    </form>
+</section>
+
+
+
+{%endblock%}

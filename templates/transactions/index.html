@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+{%block content%}
+<section>
+    <h3>All transactions</h3>
+    <div>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Account</th>
+                <th>Supplier</th>
+                <th colspan="2">Actions</th>
+                <th>Description</th>
+            </tr>
+            {% for transaction in all_transactions%}
+            <tr>
+                <td>{{transaction.date}}</td>
+                <td>£{{transaction.amount}}</td>
+                <td><a href="">{{transaction.account.name}}</a></td>
+                <td><a href="">{{transaction.merchant.name}}</a></td>
+                <td><a href="/transactions/{{transaction.id}}/edit">Edit</a></td>
+                <td><a href="/transactions/{{transaction.id}}/delete">Delete</a></td>
+                <td>{{transaction.description}}</td>
+            </tr>
+            {%endfor%}
+        </table>
+    </div>
+</section>
+{%endblock%}

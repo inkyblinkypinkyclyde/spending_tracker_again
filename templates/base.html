@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Spending Tracker</title>
+</head>
+
+<body>
+    <div class="parent">
+        <header>
+            <section>
+                <h1>Spending tracker</h1>
+            </section>
+            <nav class="flex flex--row">
+                <ul>
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/future">Future</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="/accounts">All accounts</a>
+                    </li>
+                    <li>
+                        <a href="/accounts/new">Add account</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="/transactions">All transactions</a>
+                    </li>
+                    <li>
+                        <a href="/transactions/new">Add transaction</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="/merchants">All merchants</a>
+                    </li>
+                    <li>
+                        <a href="/merchants/new">Add merchant</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div>
+            <aside>
+                <div>
+                    <table>
+                        <tr>
+                            <th>Account</th>
+                            <th>Balance Today</th>
+                        </tr>
+                        {% for account in all_accounts%}
+                        <tr>
+                            <td>{{account.name}}</td>
+                            <td>£{{account.balance}}</td>
+                        </tr>
+                        {% endfor %}
+                        <form action="/future" method="POST">
+                            <tr>
+                                <td>From:</td>
+                                <td>
+                                    <select name="account_id_out" id="account">
+                                        {% for account in all_accounts %}
+                                        <option value="{{account.id}}">{{account.name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>To:</td>
+                                <td>
+                                    <select name="account_id_in" id="account">
+                                        {% for account in all_accounts %}
+                                        <option value="{{account.id}}">{{account.name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Amount:</td>
+                                <td><input type="number" name="amount" step=".01" width="121.19"></td>
+                            </tr>
+                            <tr>
+                                <td>Date:</td>
+                                <td><input type="date" name="date"></td>
+                            </tr>
+                            <tr>
+                                <td>Remind me</td>
+                                <td><input type="checkbox" name="email" value="True"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button type="submit">Transfer</button>
+                                </td>
+                            </tr>
+                        </form>
+                    </table>
+                </div>
+            </aside>
+            <section>
+                {%block content%}
+
+                {%endblock%}
+            </section>
+        </div>
+        <footer>
+            <div>
+                <p>
+                    Powered by flask!
+                </p>
+                <p>
+                    I don't have anything else to put here but it looks weird without it
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
