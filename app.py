@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from flask_mail import Mail, Message
+# from flask_mail import Mail, Message
 
 from controllers.accounts_controller import accounts_blueprint
 from controllers.transactions_controller import transactions_blueprint
@@ -18,7 +18,7 @@ app.config['MAIL_PASSWORD'] = password
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
-mail = Mail(app)
+# mail = Mail(app)
 
 app.register_blueprint(accounts_blueprint)
 app.register_blueprint(transactions_blueprint)
