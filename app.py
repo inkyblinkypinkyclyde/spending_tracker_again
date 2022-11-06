@@ -4,6 +4,7 @@ from flask_mail import Mail, Message
 from controllers.accounts_controller import accounts_blueprint
 from controllers.transactions_controller import transactions_blueprint
 from controllers.merchants_controller import merchants_blueprint
+from emailcredentials import email, password
 import repositories.account_repository as account_repository
 import repositories.transaction_repository as transaction_repository
 import repositories.merchant_repository as merchant_repository
@@ -12,8 +13,8 @@ app = Flask(__name__)
 
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'yourbirdboxisoccupied@gmail.com'
-app.config['MAIL_PASSWORD'] = 'password-goes-here'
+app.config['MAIL_USERNAME'] = email
+app.config['MAIL_PASSWORD'] = password
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
